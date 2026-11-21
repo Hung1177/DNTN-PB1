@@ -26,6 +26,9 @@ public class UserEntity {
     @Column(name = "full_name", nullable = false, length = 120)
     private String fullName;
 
+    @Column(name = "avatar_url", length = 500)
+    private String avatarUrl;
+
     @Column(name = "status", nullable = false, length = 30)
     private String status = "ACTIVE";
 
@@ -117,5 +120,13 @@ public class UserEntity {
 
     public void setRoles(Set<RoleEntity> roles) {
         this.roles = roles;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

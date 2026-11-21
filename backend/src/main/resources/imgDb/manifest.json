@@ -1,0 +1,250 @@
+[
+  {
+    "folder": "products",
+    "filename": "prd-chicken-breast.jpg",
+    "relativePath": "/imgDb/products/prd-chicken-breast.jpg",
+    "sizeBytes": 190170,
+    "source": "Wikipedia:Chicken as food",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Chickens_in_market.jpg/960px-Chickens_in_market.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-pork-belly.jpg",
+    "relativePath": "/imgDb/products/prd-pork-belly.jpg",
+    "sizeBytes": 112561,
+    "source": "Wikipedia:Pork belly",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Schweinebauch-2.jpg/960px-Schweinebauch-2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-beef-shank.jpg",
+    "relativePath": "/imgDb/products/prd-beef-shank.jpg",
+    "sizeBytes": 33640,
+    "source": "Wikipedia:Beef shank",
+    "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/BeefCutShank.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-egg-chicken.jpg",
+    "relativePath": "/imgDb/products/prd-egg-chicken.jpg",
+    "sizeBytes": 69938,
+    "source": "Wikipedia:Eggs as food",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Huevo_frito.jpg/960px-Huevo_frito.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-white-tofu.jpg",
+    "relativePath": "/imgDb/products/prd-white-tofu.jpg",
+    "sizeBytes": 162616,
+    "source": "Wikipedia:Tofu",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Japanese_SilkyTofu_%28Kinugoshi_Tofu%29.JPG/960px-Japanese_SilkyTofu_%28Kinugoshi_Tofu%29.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-broccoli.jpg",
+    "relativePath": "/imgDb/products/prd-broccoli.jpg",
+    "sizeBytes": 136491,
+    "source": "Wikipedia:Broccoli",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Broccoli_and_cross_section_edit.jpg/960px-Broccoli_and_cross_section_edit.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-cucumber.jpg",
+    "relativePath": "/imgDb/products/prd-cucumber.jpg",
+    "sizeBytes": 475089,
+    "source": "Wikipedia:Cucumber",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/ARS_cucumber.jpg/960px-ARS_cucumber.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-morning-glory.jpg",
+    "relativePath": "/imgDb/products/prd-morning-glory.jpg",
+    "sizeBytes": 191047,
+    "source": "Wikipedia:Ipomoea aquatica",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/N_Ipoa_D1600.JPG/960px-N_Ipoa_D1600.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-tomato.jpg",
+    "relativePath": "/imgDb/products/prd-tomato.jpg",
+    "sizeBytes": 92768,
+    "source": "Wikipedia:Tomato",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/960px-Tomato_je.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-rock-apple.jpg",
+    "relativePath": "/imgDb/products/prd-rock-apple.jpg",
+    "sizeBytes": 51095,
+    "source": "Wikipedia:Apple",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Pink_lady_and_cross_section.jpg/960px-Pink_lady_and_cross_section.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-salmon-fillet.jpg",
+    "relativePath": "/imgDb/products/prd-salmon-fillet.jpg",
+    "sizeBytes": 120055,
+    "source": "Wikipedia:Salmon as food",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Sashimi_-_Maguro_Restaurant%2C_Bangna%2C_Bangkok_%2844856596864%29.jpg/960px-Sashimi_-_Maguro_Restaurant%2C_Bangna%2C_Bangkok_%2844856596864%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-shrimp-peeled.jpg",
+    "relativePath": "/imgDb/products/prd-shrimp-peeled.jpg",
+    "sizeBytes": 145609,
+    "source": "Wikipedia:Shrimp and prawn as food",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Spicy_fried_King_Prawns.jpg/960px-Spicy_fried_King_Prawns.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-choy-sum.jpg",
+    "relativePath": "/imgDb/products/prd-choy-sum.jpg",
+    "sizeBytes": 229012,
+    "source": "Wikipedia:Choy sum",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Choi_Sum_stalks.JPG/960px-Choi_Sum_stalks.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-potato.jpg",
+    "relativePath": "/imgDb/products/prd-potato.jpg",
+    "sizeBytes": 206851,
+    "source": "Wikipedia:Potato",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Patates.jpg/960px-Patates.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-carrot.jpg",
+    "relativePath": "/imgDb/products/prd-carrot.jpg",
+    "sizeBytes": 120116,
+    "source": "Wikipedia:Carrot",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Vegetable-Carrot-Bundle-wStalks.jpg/960px-Vegetable-Carrot-Bundle-wStalks.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-enoki-mushroom.jpg",
+    "relativePath": "/imgDb/products/prd-enoki-mushroom.jpg",
+    "sizeBytes": 197896,
+    "source": "Wikipedia:Flammulina filiformis",
+    "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/04/Flammulina_velutipes_%28Enokitake%2C_winter_mushroom%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  },
+  {
+    "folder": "products",
+    "filename": "prd-st25-rice.jpg",
+    "relativePath": "/imgDb/products/prd-st25-rice.jpg",
+    "sizeBytes": 155134,
+    "source": "Wikipedia:Jasmine rice",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/2014_uncooked_Thai_jasmine_rice.jpg/960px-2014_uncooked_Thai_jasmine_rice.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "pickup-points",
+    "filename": "pp-01-nhon.jpg",
+    "relativePath": "/imgDb/pickup-points/pp-01-nhon.jpg",
+    "sizeBytes": 136078,
+    "source": "Wikipedia:Convenience store",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Convenience_store_interior.jpg/960px-Convenience_store_interior.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "pickup-points",
+    "filename": "pp-02-caugiay.jpg",
+    "relativePath": "/imgDb/pickup-points/pp-02-caugiay.jpg",
+    "sizeBytes": 258090,
+    "source": "Wikipedia:Supermarket",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Stop%26Shop.jpg/960px-Stop%26Shop.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "pickup-points",
+    "filename": "pp-03-mydinh.jpg",
+    "relativePath": "/imgDb/pickup-points/pp-03-mydinh.jpg",
+    "sizeBytes": 234827,
+    "source": "Wikipedia:Greengrocer",
+    "sourceUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Gourock_greengrocers_ext.jpg/960px-Gourock_greengrocers_ext.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "folder": "users",
+    "filename": "user-01-admin.jpg",
+    "relativePath": "/imgDb/users/user-01-admin.jpg",
+    "sizeBytes": 6948,
+    "source": "randomuser.me (male)",
+    "sourceUrl": "https://randomuser.me/api/portraits/women/68.jpg"
+  },
+  {
+    "folder": "users",
+    "filename": "user-02-warehouse.jpg",
+    "relativePath": "/imgDb/users/user-02-warehouse.jpg",
+    "sizeBytes": 5216,
+    "source": "randomuser.me (male)",
+    "sourceUrl": "https://randomuser.me/api/portraits/men/72.jpg"
+  },
+  {
+    "folder": "users",
+    "filename": "user-03-dispatcher.jpg",
+    "relativePath": "/imgDb/users/user-03-dispatcher.jpg",
+    "sizeBytes": 3912,
+    "source": "randomuser.me (female)",
+    "sourceUrl": "https://randomuser.me/api/portraits/women/85.jpg"
+  },
+  {
+    "folder": "users",
+    "filename": "user-04-driver1.jpg",
+    "relativePath": "/imgDb/users/user-04-driver1.jpg",
+    "sizeBytes": 4356,
+    "source": "randomuser.me (male)",
+    "sourceUrl": "https://randomuser.me/api/portraits/men/73.jpg"
+  },
+  {
+    "folder": "users",
+    "filename": "user-05-driver2.jpg",
+    "relativePath": "/imgDb/users/user-05-driver2.jpg",
+    "sizeBytes": 3835,
+    "source": "randomuser.me (male)",
+    "sourceUrl": "https://randomuser.me/api/portraits/men/83.jpg"
+  },
+  {
+    "folder": "users",
+    "filename": "user-06-agent-nhon.jpg",
+    "relativePath": "/imgDb/users/user-06-agent-nhon.jpg",
+    "sizeBytes": 6460,
+    "source": "randomuser.me (female)",
+    "sourceUrl": "https://randomuser.me/api/portraits/women/63.jpg"
+  },
+  {
+    "folder": "users",
+    "filename": "user-07-agent-caugiay.jpg",
+    "relativePath": "/imgDb/users/user-07-agent-caugiay.jpg",
+    "sizeBytes": 4349,
+    "source": "randomuser.me (male)",
+    "sourceUrl": "https://randomuser.me/api/portraits/men/30.jpg"
+  },
+  {
+    "folder": "users",
+    "filename": "user-08-agent-mydinh.jpg",
+    "relativePath": "/imgDb/users/user-08-agent-mydinh.jpg",
+    "sizeBytes": 3733,
+    "source": "randomuser.me (female)",
+    "sourceUrl": "https://randomuser.me/api/portraits/men/56.jpg"
+  },
+  {
+    "folder": "users",
+    "filename": "user-10-customer2.jpg",
+    "relativePath": "/imgDb/users/user-10-customer2.jpg",
+    "sizeBytes": 6516,
+    "source": "randomuser.me (male)",
+    "sourceUrl": "https://randomuser.me/api/portraits/men/29.jpg"
+  },
+  {
+    "folder": "users",
+    "filename": "user-11-customer3.jpg",
+    "relativePath": "/imgDb/users/user-11-customer3.jpg",
+    "sizeBytes": 5147,
+    "source": "randomuser.me (male)",
+    "sourceUrl": "https://randomuser.me/api/portraits/men/87.jpg"
+  },
+  {
+    "folder": "users",
+    "filename": "user-12-customer4.jpg",
+    "relativePath": "/imgDb/users/user-12-customer4.jpg",
+    "sizeBytes": 4857,
+    "source": "randomuser.me (female)",
+    "sourceUrl": "https://randomuser.me/api/portraits/women/0.jpg"
+  }
+]

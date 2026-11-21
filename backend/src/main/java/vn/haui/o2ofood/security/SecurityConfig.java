@@ -54,7 +54,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,
                                 "/api/v1/pickup-points/**",
                                 "/api/v1/cycles/**",
-                                "/api/v1/catalog/**"
+                                "/api/v1/catalog/**",
+                                "/imgDb/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

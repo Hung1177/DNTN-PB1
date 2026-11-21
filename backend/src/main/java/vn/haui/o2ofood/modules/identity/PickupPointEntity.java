@@ -30,6 +30,9 @@ public class PickupPointEntity {
     @Column(name = "cold_storage_capacity", nullable = false)
     private Integer coldStorageCapacity;
 
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+
     @Column(name = "status", nullable = false, length = 30)
     private String status = "ACTIVE";
 
@@ -110,5 +113,13 @@ public class PickupPointEntity {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

@@ -31,6 +31,15 @@ public class ProductEntity {
     @Column(name = "allergen_tags", length = 255)
     private String allergenTags;
 
+    @Column(name = "description", length = 1000)
+    private String description;
+
+    @Column(name = "supplier_name", length = 200)
+    private String supplierName;
+
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
 
@@ -107,5 +116,29 @@ public class ProductEntity {
 
     public void setIsActive(Boolean active) {
         isActive = active;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

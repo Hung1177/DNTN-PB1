@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kiểm Tra Dữ Liệu SQL Server — O2OFoodPickupDB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f7f4ee;
+        --surface: #fdfbf7;
+        --raised: #efe9df;
+        --ink: #1f1b16;
+        --secondary: #5e554a;
+        --muted: #7b7266;
+        --accent: #166534;
+        --accent-soft: #f0f7f2;
+        --amber: #b45309;
+        --amber-soft: #fdf8ed;
+        --border: rgba(31, 27, 22, 0.1);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.5;
+      }
+      .mono {
+        font-family: 'JetBrains Mono', monospace;
+        font-variant-numeric: tabular-nums;
+      }
+      header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 30;
+      }
+      .wrap {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 16px 24px;
+      }
+      .topbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .sub {
+        font-size: 12px;
+        color: var(--secondary);
+        margin-top: 2px;
+      }
+      .btn {
+        height: 36px;
+        padding: 0 14px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--accent);
+        color: #fff;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .btn:hover {
+        opacity: 0.92;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .kpi {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+      }
+      .kpi-label {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi-val {
+        font-size: 26px;
+        font-weight: 500;
+        margin-top: 6px;
+        color: var(--ink);
+      }
+      .tablist {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 20px;
+      }
+      .tab {
+        position: relative;
+        flex: none;
+        padding: 10px 14px;
+        border: 0;
+        background: transparent;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--secondary);
+        cursor: pointer;
+      }
+      .tab[aria-selected='true'] {
+        color: var(--accent);
+      }
+      .tab[aria-selected='true']::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-bottom: 2px solid var(--accent);
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+        gap: 16px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .card-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background: var(--raised);
+        display: block;
+      }
+      .card-body {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 500;
+        background: var(--accent-soft);
+        color: var(--accent);
+        border: 1px solid rgba(22, 101, 52, 0.2);
+      }
+      .badge-amber {
+        background: var(--amber-soft);
+        color: var(--amber);
+        border-color: rgba(180, 83, 9, 0.2);
+      }
+      .badge-neutral {
+        background: var(--raised);
+        color: var(--secondary);
+        border-color: var(--border);
+      }
+      .row-between {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .title {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 0;
+      }
+      .desc {
+        font-size: 12.5px;
+        color: var(--secondary);
+        margin: 0;
+      }
+      .meta-box {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 12px;
+        display: grid;
+        gap: 4px;
+        margin-top: auto;
+      }
+      .avatar-card {
+        display: flex;
+        gap: 14px;
+        padding: 16px;
+        align-items: center;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+      }
+      .avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 12px;
+        object-fit: cover;
+        background: var(--raised);
+        flex-shrink: 0;
+        border: 1px solid var(--border);
+      }
+      .table-wrap {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12.5px;
+      }
+      th,
+      td {
+        padding: 10px 12px;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      th {
+        background: var(--bg);
+        color: var(--muted);
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .explorer {
+        display: grid;
+        grid-template-columns: 270px 1fr;
+        gap: 16px;
+      }
+      @media (max-width: 900px) {
+        .explorer {
+          grid-template-columns: 1fr;
+        }
+      }
+      .table-list {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        max-height: 620px;
+        overflow-y: auto;
+        padding: 8px;
+      }
+      .table-item {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 7px 10px;
+        border: 0;
+        border-radius: 7px;
+        background: transparent;
+        font-family: inherit;
+        font-size: 12px;
+        cursor: pointer;
+        text-align: left;
+      }
+      .table-item:hover {
+        background: var(--raised);
+      }
+      .table-item.active {
+        background: var(--accent);
+        color: #fff;
+      }
+      .error {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #b91c1c;
+        padding: 12px 16px;
+        border-radius: 10px;
+        font-size: 13px;
+        margin-bottom: 16px;
+      }
+      .section-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 22px 0 10px;
+      }
+      .img-path {
+        font-size: 11px;
+        color: var(--muted);
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap topbar">
+        <div>
+          <h1>Trình Kiểm Tra Dữ Liệu SQL Server — O2OFoodPickupDB</h1>
+          <div class="sub" id="conn-info">Đang kết nối trực tiếp tới SQL Server (localhost)...</div>
+        </div>
+        <button class="btn" id="reload-btn" type="button">Tải lại trực tiếp từ SQL</button>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <div id="error-box" class="error" hidden></div>
+
+      <section class="kpi-grid" id="kpi-grid"></section>
+
+      <div class="tablist" role="tablist" aria-label="Nhóm dữ liệu SQL">
+        <button class="tab" role="tab" aria-selected="true" data-tab="products">Sản phẩm (Ảnh + Mô tả + NCC)</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="users">Nhân viên, Tài xế, Đại lý & Khách</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="points">Điểm nhận hàng / Đại lý</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="ops">Lô FEFO, Đơn hàng, Chuyến, Hoa hồng & AI</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="all-tables">Toàn bộ 45 bảng SQL</button>
+      </div>
+
+      <section id="panel-products"></section>
+      <section id="panel-users" hidden></section>
+      <section id="panel-points" hidden></section>
+      <section id="panel-ops" hidden></section>
+      <section id="panel-all-tables" hidden></section>
+    </main>
+
+    <script>
+      const ROLE_LABELS = {
+        ROLE_ADMIN: 'Quản trị viên',
+        ROLE_WAREHOUSE: 'Nhân viên kho',
+        ROLE_DISPATCHER: 'Điều phối viên',
+        ROLE_DRIVER: 'Tài xế giao nhận',
+        ROLE_AGENT: 'Đại lý điểm nhận',
+        ROLE_CUSTOMER: 'Khách hàng',
+      };
+
+      const vnd = (n) =>
+        new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits: 0 }).format(
+          Number(n || 0)
+        );
+
+      const esc = (str) =>
+        String(str ?? '').replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+
+      let state = null;
+
+      async function loadOverview() {
+        const errBox = document.getElementById('error-box');
+        errBox.hidden = true;
+        try {
+          const res = await fetch('/api/overview');
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Lỗi máy chủ');
+          state = data;
+
+          document.getElementById('conn-info').textContent =
+            `SQL Server: ${data.server} · CSDL: ${data.database} · Ảnh imgDb: ${data.imgFilesCount} tệp · Cập nhật: ${data.checkedAt}`;
+
+          renderKpis(data);
+          renderProducts(data.products);
+          renderUsers(data.users);
+          renderPickupPoints(data.pickupPoints);
+          renderOps(data);
+          renderTableExplorer(data.tables);
+        } catch (err) {
+          errBox.textContent = 'Không thể đọc dữ liệu SQL Server: ' + err.message;
+          errBox.hidden = false;
+        }
+      }
+
+      function renderKpis(d) {
+        const totalRows = d.tables.reduce((s, t) => s + Number(t.row_count || 0), 0);
+        const items = [
+          ['Tổng số bảng SQL', d.tables.length],
+          ['Tổng số bản ghi', totalRows],
+          ['Sản phẩm có ảnh & NCC', d.products.length],
+          ['Nhân sự / Tài xế / Khách', d.users.length],
+          ['Đại lý có ảnh cửa hàng', d.pickupPoints.length],
+          ['Ảnh lưu trong imgDb', d.imgFilesCount],
+        ];
+        document.getElementById('kpi-grid').innerHTML = items
+          .map(
+            ([label, val]) => `
+          <div class="kpi">
+            <div class="kpi-label">${label}</div>
+            <div class="kpi-val mono">${val}</div>
+          </div>`
+          )
+          .join('');
+      }
+
+      function renderProducts(products) {
+        document.getElementById('panel-products').innerHTML = `
+          <div class="cards">
+            ${products
+              .map(
+                (p) => `
+              <article class="card">
+                <img class="card-img" src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy" />
+                <div class="card-body">
+                  <div class="row-between">
+                    <span class="badge">${esc(p.category)}</span>
+                    <span class="badge badge-neutral">${esc(p.storage_type)}</span>
+                  </div>
+                  <h2 class="title">${esc(p.name)}</h2>
+                  <p class="desc">${esc(p.description || 'Chưa có mô tả')}</p>
+                  <div class="meta-box">
+                    <div><strong>Nguồn cung cấp:</strong> ${esc(p.supplier_name || 'Chưa cập nhật')}</div>
+                    <div class="row-between">
+                      <span><strong>Quy cách:</strong> ${esc(p.pack_name || '—')} (${esc(p.pack_weight_grams || 0)}g)</span>
+                      <span class="mono" style="color:var(--accent);font-weight:600">${vnd(p.unit_price)}</span>
+                    </div>
+                    <div class="row-between">
+                      <span class="mono">SKU: ${esc(p.sku || p.sku_prefix)}</span>
+                      <span class="mono">Tồn: ${esc(p.total_available_qty)} gói</span>
+                    </div>
+                    <div class="img-path mono">Ảnh: ${esc(p.image_url)}</div>
+                  </div>
+                </div>
+              </article>`
+              )
+              .join('')}
+          </div>`;
+      }
+
+      function renderUsers(users) {
+        document.getElementById('panel-users').innerHTML = `
+          <div class="cards">
+            ${users
+              .map(
+                (u) => `
+              <article class="avatar-card">
+                <img class="avatar" src="${esc(u.avatar_url)}" alt="${esc(u.full_name)}" loading="lazy" />
+                <div style="min-width:0;flex:1">
+                  <div class="row-between">
+                    <span class="badge ${u.role_code === 'ROLE_DRIVER' || u.role_code === 'ROLE_AGENT' ? 'badge-amber' : ''}">
+                      ${esc(ROLE_LABELS[u.role_code] || u.role_code)}
+                    </span>
+                    <span class="mono" style="font-size:11px;color:var(--muted)">ID #${u.id}</span>
+                  </div>
+                  <div class="title" style="margin-top:6px">${esc(u.full_name)}</div>
+                  <div class="desc mono" style="font-size:11.5px;margin-top:2px">${esc(u.email)}</div>
+                  <div class="desc mono" style="font-size:11.5px">SĐT: ${esc(u.phone)}</div>
+                  <div class="img-path mono" style="margin-top:4px">${esc(u.avatar_url)}</div>
+                </div>
+              </article>`
+              )
+              .join('')}
+          </div>`;
+      }
+
+      function renderPickupPoints(points) {
+        document.getElementById('panel-points').innerHTML = `
+          <div class="cards">
+            ${points
+              .map(
+                (pp) => `
+              <article class="card">
+                <img class="card-img" src="${esc(pp.image_url)}" alt="${esc(pp.name)}" loading="lazy" />
+                <div class="card-body">
+                  <div class="row-between">
+                    <span class="badge mono">${esc(pp.code)}</span>
+                    <span class="badge badge-neutral">Kho lạnh: ${esc(pp.cold_storage_capacity)} đơn</span>
+                  </div>
+                  <h2 class="title">${esc(pp.name)}</h2>
+                  <p class="desc">${esc(pp.address)}, ${esc(pp.ward)}, ${esc(pp.district)}, ${esc(pp.city)}</p>
+                  <div class="meta-box">
+                    <div style="display:flex;align-items:center;gap:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">
+                      <img src="${esc(pp.agent_avatar_url)}" alt="${esc(pp.agent_name)}" style="width:40px;height:40px;border-radius:8px;object-fit:cover" />
+                      <div>
+                        <div style="font-weight:600">Đại lý phụ trách: ${esc(pp.agent_name || 'Chưa gán')}</div>
+                        <div class="mono" style="font-size:11px;color:var(--muted)">SĐT: ${esc(pp.agent_phone || pp.contact_phone)}</div>
+                      </div>
+                    </div>
+                    <div class="mono" style="font-size:11px;color:var(--muted)">Tọa độ: ${pp.latitude}, ${pp.longitude}</div>
+                    <div class="img-path mono">Ảnh đại lý: ${esc(pp.image_url)}</div>
+                  </div>
+                </div>
+              </article>`
+              )
+              .join('')}
+          </div>`;
+      }
+
+      function renderSimpleTable(cols, rows) {
+        if (!rows || rows.length === 0) return '<p class="desc">Chưa có bản ghi nào.</p>';
+        return `
+          <div class="table-wrap">
+            <table>
+              <thead><tr>${cols.map((c) => `<th>${esc(c.label)}</th>`).join('')}</tr></thead>
+              <tbody>
+                ${rows
+                  .map(
+                    (r) =>
+                      `<tr>${cols
+                        .map((c) => `<td class="${c.mono ? 'mono' : ''}">${esc(c.fmt ? c.fmt(r[c.key], r) : r[c.key])}</td>`)
+                        .join('')}</tr>`
+                  )
+                  .join('')}
+              </tbody>
+            </table>
+          </div>`;
+      }
+
+      function renderOps(d) {
+        document.getElementById('panel-ops').innerHTML = `
+          <h3 class="section-title">1. Đơn hàng (orders — ${d.orders.length} dòng)</h3>
+          ${renderSimpleTable(
+            [
+              { key: 'order_code', label: 'Mã đơn', mono: true },
+              { key: 'customer_name', label: 'Khách hàng' },
+              { key: 'pickup_point_name', label: 'Điểm nhận' },
+              { key: 'total_amount', label: 'Tổng tiền', mono: true, fmt: (v) => vnd(v) },
+              { key: 'order_status', label: 'Thương mại', mono: true },
+              { key: 'fulfillment_status', label: 'Vật lý', mono: true },
+              { key: 'payment_status', label: 'Thanh toán', mono: true },
+            ],
+            d.orders
+          )}
+
+          <h3 class="section-title">2. Lô hàng FEFO (lots — ${d.lots.length} dòng)</h3>
+          ${renderSimpleTable(
+            [
+              { key: 'lot_code', label: 'Mã lô', mono: true },
+              { key: 'product_name', label: 'Sản phẩm' },
+              { key: 'pack_name', label: 'Quy cách' },
+              { key: 'supplier_name', label: 'Nhà cung cấp lô' },
+              { key: 'expiry_date', label: 'Hạn dùng', mono: true },
+              { key: 'remaining_qty', label: 'Còn lại', mono: true },
+              { key: 'status', label: 'Trạng thái', mono: true },
+            ],
+            d.lots
+          )}
+
+          <h3 class="section-title">3. Chuyến giao hàng & Tài xế (trips — ${d.trips.length} dòng)</h3>
+          ${renderSimpleTable(
+            [
+              { key: 'trip_code', label: 'Mã chuyến', mono: true },
+              { key: 'cycle_code', label: 'Đợt giao', mono: true },
+              { key: 'driver_name', label: 'Tài xế' },
+              { key: 'trip_type', label: 'Loại chuyến', mono: true },
+              { key: 'status', label: 'Trạng thái', mono: true },
+            ],
+            d.trips
+          )}
+
+          <h3 class="section-title">4. Sổ cái Hoa hồng bất biến (commission_ledger — ${d.commissionLedger.length} dòng)</h3>
+          ${renderSimpleTable(
+            [
+              { key: 'order_code', label: 'Mã đơn', mono: true },
+              { key: 'pickup_point_name', label: 'Đại lý' },
+              { key: 'entry_type', label: 'Loại bút toán', mono: true },
+              { key: 'amount', label: 'Số tiền', mono: true, fmt: (v) => vnd(v) },
+              { key: 'note', label: 'Ghi chú' },
+            ],
+            d.commissionLedger
+          )}
+
+          <h3 class="section-title">5. Công thức AI & Tài liệu chính sách RAG (recipes: ${d.recipes.length}, docs: ${d.knowledgeDocs.length})</h3>
+          ${renderSimpleTable(
+            [
+              { key: 'name', label: 'Tên món ăn' },
+              { key: 'servings', label: 'Khẩu phần', mono: true },
+              { key: 'cooking_time_minutes', label: 'Thời gian (phút)', mono: true },
+              { key: 'dietary_tags', label: 'Nhãn dinh dưỡng' },
+            ],
+            d.recipes
+          )}
+        `;
+      }
+
+      function renderTableExplorer(tables) {
+        const first = tables.find((t) => t.table_name === 'products') || tables[0];
+        document.getElementById('panel-all-tables').innerHTML = `
+          <div class="explorer">
+            <div class="table-list" id="sql-table-list">
+              ${tables
+                .map(
+                  (t) => `
+                <button class="table-item ${t.table_name === first.table_name ? 'active' : ''}" data-table="${esc(t.table_name)}">
+                  <span class="mono">${esc(t.table_name)}</span>
+                  <span class="mono">${t.row_count}</span>
+                </button>`
+                )
+                .join('')}
+            </div>
+            <div id="sql-table-detail" class="table-wrap" style="padding:16px">Đang tải dữ liệu bảng...</div>
+          </div>`;
+
+        document.querySelectorAll('#sql-table-list .table-item').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('#sql-table-list .table-item').forEach((b) => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadRawTable(btn.dataset.table);
+          });
+        });
+
+        if (first) loadRawTable(first.table_name);
+      }
+
+      async function loadRawTable(tableName) {
+        const box = document.getElementById('sql-table-detail');
+        box.innerHTML = `<div class="desc">Đang truy vấn SELECT TOP 100 * FROM dbo.${esc(tableName)}...</div>`;
+        const res = await fetch('/api/table/' + encodeURIComponent(tableName));
+        const data = await res.json();
+        if (!res.ok) {
+          box.innerHTML = `<div class="error">${esc(data.error)}</div>`;
+          return;
+        }
+        const rows = data.rows || [];
+        if (rows.length === 0) {
+          box.innerHTML = `<div class="desc">Bảng <strong class="mono">${esc(tableName)}</strong> hiện có 0 bản ghi.</div>`;
+          return;
+        }
+        const cols = Object.keys(rows[0]);
+        box.innerHTML = `
+          <div style="margin-bottom:10px;font-size:13px">
+            Bảng <strong class="mono">${esc(tableName)}</strong> — hiển thị <strong>${rows.length}</strong> bản ghi
+          </div>
+          <table>
+            <thead><tr>${cols.map((c) => `<th class="mono">${esc(c)}</th>`).join('')}</tr></thead>
+            <tbody>
+              ${rows
+                .map(
+                  (r) =>
+                    `<tr>${cols
+                      .map((c) => {
+                        const val = r[c];
+                        if (typeof val === 'string' && val.startsWith('/imgDb/')) {
+                          return `<td><img src="${esc(val)}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;display:block;margin-bottom:4px" /><span class="mono" style="font-size:10px">${esc(val)}</span></td>`;
+                        }
+                        return `<td>${esc(val === null ? 'NULL' : val)}</td>`;
+                      })
+                      .join('')}</tr>`
+                )
+                .join('')}
+            </tbody>
+          </table>`;
+      }
+
+      document.querySelectorAll('.tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.tab').forEach((t) => t.setAttribute('aria-selected', 'false'));
+          tab.setAttribute('aria-selected', 'true');
+          const key = tab.dataset.tab;
+          ['products', 'users', 'points', 'ops', 'all-tables'].forEach((k) => {
+            document.getElementById('panel-' + k).hidden = k !== key;
+          });
+        });
+      });
+
+      document.getElementById('reload-btn').addEventListener('click', loadOverview);
+      loadOverview();
+    </script>
+  </body>
+</html>
