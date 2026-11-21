@@ -1,0 +1,48 @@
+# Maven & Java
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+*.log
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+replay_pid*
+
+# Node & Vue 3 Web
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Android & Gradle
+.gradle/
+build/
+local.properties
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# IDEs & Editors
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+.settings/
+.project
+.classpath
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db

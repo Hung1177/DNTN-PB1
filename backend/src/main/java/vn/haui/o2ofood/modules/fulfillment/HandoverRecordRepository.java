@@ -1,0 +1,9 @@
+package vn.haui.o2ofood.modules.fulfillment;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface HandoverRecordRepository extends JpaRepository<HandoverRecordEntity, Long> {
+    List<HandoverRecordEntity> findByTripStopIdOrderByIdAsc(Long tripStopId);
+}

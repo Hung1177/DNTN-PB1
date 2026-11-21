@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --color-canvas: #f7f4ee;
+  --color-surface: #fdfbf7;
+  --color-raised: #efe9df;
+  --color-hairline: rgba(31, 27, 22, 0.09);
+  --color-ink: #1f1b16;
+  --color-ink-secondary: #5e554a;
+  --color-ink-muted: #7b7266;
+  --color-accent: #166534;
+  --color-accent-hover: #14532d;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+  }
+
+  body {
+    accent-color: var(--color-accent);
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    transition-property: color, background-color, border-color, opacity, transform;
+    transition-duration: 150ms;
+    transition-timing-function: var(--ease-smooth);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Fallback for older browsers without accent-color support (modern-web-guidance: brand-consistent-forms) */
+@supports not (accent-color: var(--color-accent)) {
+  input[type='checkbox'].brand-check {
+    position: absolute;
+    clip-path: inset(50%);
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    white-space: nowrap;
+  }
+
+  input[type='checkbox'].brand-check + span {
+    position: relative;
+    padding-left: 1.5rem;
+    cursor: pointer;
+  }
+
+  input[type='checkbox'].brand-check + span::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    border: 1.5px solid var(--color-ink-muted);
+    border-radius: 4px;
+    background: var(--color-surface);
+  }
+
+  input[type='checkbox'].brand-check:checked + span::before {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  progress {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: var(--color-raised);
+    border-radius: 4px;
+  }
+
+  progress::-webkit-progress-bar {
+    background: var(--color-raised);
+    border-radius: 4px;
+  }
+
+  progress::-webkit-progress-value {
+    background: var(--color-accent);
+    border-radius: 4px;
+  }
+}
+
+/* Native <dialog> modal scroll containment & top-layer backdrop (modern-web-guidance: dialog) */
+dialog.app-dialog {
+  padding: 0;
+  border: 1px solid var(--color-hairline);
+  border-radius: 16px;
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: 0 12px 32px rgba(31, 27, 22, 0.14);
+  max-width: min(36rem, calc(100vw - 2rem));
+  width: 100%;
+  max-height: calc(100dvh - 2rem);
+}
+
+dialog.app-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+dialog.app-dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog.app-dialog::backdrop {
+  background: rgba(31, 27, 22, 0.42);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* Accessible single-row tablist with forced-colors-safe border indicator (modern-web-guidance: tabs) */
+.o2o-tablist {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--color-hairline);
+  scrollbar-width: none;
+}
+
+.o2o-tablist::-webkit-scrollbar {
+  display: none;
+}
+
+.o2o-tablist [role='tab'] {
+  position: relative;
+  flex: none;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--color-ink-secondary);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.o2o-tablist [role='tab']:hover {
+  color: var(--color-ink);
+}
+
+.o2o-tablist [role='tab'][aria-selected='true'] {
+  color: var(--color-accent);
+}
+
+.o2o-tablist [role='tab'][aria-selected='true']::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  border-block-end: 2px solid var(--color-accent);
+}
+
+.hairline {
+  border-color: var(--color-hairline);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  z-index: 10;
+  font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+}

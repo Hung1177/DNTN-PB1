@@ -1,0 +1,84 @@
+server:
+  port: ${API_PORT:8080}
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  application:
+    name: o2o-food-pickup-backend
+  jackson:
+    time-zone: Asia/Ho_Chi_Minh
+    serialization:
+      write-dates-as-timestamps: false
+  datasource:
+    url: ${DB_URL:jdbc:sqlserver://localhost:1433;databaseName=o2ofood_db;encrypt=true;trustServerCertificate=true;sendTimeAsDateTime=false}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:O2oFood@StrongPass2026!}
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+        jdbc:
+          time_zone: Asia/Ho_Chi_Minh
+        format_sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    validate-on-migrate: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when_authorized
+
+springdoc:
+  api-docs:
+    path: /api/v1/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+
+app:
+  timezone: Asia/Ho_Chi_Minh
+  security:
+    jwt:
+      secret: ${JWT_SECRET:O2oFoodPickupSystem2026SuperSecretKeyForHmacSha512MustBeAtLeast64BytesLong!}
+      access-expiration-ms: ${JWT_ACCESS_EXPIRATION_MS:3600000}
+      refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS:604800000}
+  vnpay:
+    tmn-code: ${VNPAY_TMN_CODE:DEMO_O2OFOOD}
+    hash-secret: ${VNPAY_HASH_SECRET:VNPAYSANDBOXSECRETKEY2026O2OFOODPICKUP}
+    pay-url: ${VNPAY_PAY_URL:https://sandbox.vnpayment.vn/paymentv2/vpcpay.html}
+    return-url: ${VNPAY_RETURN_URL:http://localhost:5173/payment/vnpay-return}
+    ipn-url: ${VNPAY_IPN_URL:http://localhost:8080/api/v1/payments/vnpay-ipn}
+    version: "2.1.0"
+    command: "pay"
+    curr-code: "VND"
+  cycle-defaults:
+    payment-timeout-minutes: ${CYCLE_PAYMENT_TIMEOUT_MINUTES:30}
+    cutoff-time: "${CYCLE_DEFAULT_CUTOFF_TIME:23:59:59}"
+    auto-confirm-time: "${CYCLE_DEFAULT_AUTO_CONFIRM_TIME:00:00:00}"
+    warehouse-pack-target-time: "${CYCLE_DEFAULT_WAREHOUSE_PACK_TARGET_TIME:08:00:00}"
+    dispatch-start-time: "${CYCLE_DEFAULT_DISPATCH_START_TIME:08:00:00}"
+    pickup-start-time: "${CYCLE_DEFAULT_PICKUP_START_TIME:16:00:00}"
+    auto-complete-time: "${CYCLE_DEFAULT_AUTO_COMPLETE_TIME:00:00:00}"
+  ai:
+    provider: ${AI_PROVIDER:GEMINI}
+    api-key: ${GEMINI_API_KEY:}
+    model: ${GEMINI_MODEL:gemini-2.5-flash}
